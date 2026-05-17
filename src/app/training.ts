@@ -32,7 +32,7 @@ type FormatType = 'uppercase' | 'lowercase' | 'capitalize';
 function formatString(str: string, format: FormatType): string {
   if (format === 'uppercase') return str.toUpperCase();
   else if (format === 'lowercase') return str.toLowerCase();
-  else if (format === 'capitalize') return str[0].toUpperCase + str.slice(1).toLowerCase();
+  else if (format === 'capitalize') return str[0].toUpperCase() + str.slice(1).toLowerCase();
   
   return str;
 }
