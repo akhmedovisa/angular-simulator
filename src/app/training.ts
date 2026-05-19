@@ -8,16 +8,16 @@ let textFormat: 'uppercase' | 'lowercase' | 'capitalize';
 
 // Задание №6
 interface IUser {
-  name: string,
-  age: number,
-  isDeveloper: boolean,
-  city?: string
+  name: string;
+  age: number;
+  isDeveloper: boolean;
+  city?: string;
 }
 
 // Задание №7
 interface IDeveloper extends IUser{
-  devExperience: number,
-  fieldDevelopment: string
+  devExperience: number;
+  fieldDevelopment: string;
 }
 
 // Задание №3
