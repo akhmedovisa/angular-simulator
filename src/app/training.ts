@@ -64,4 +64,4 @@ const users: IUser[] = [
 ];
 
 const developers = users.filter(user => user.isDeveloper === true);
-console.log(developers)
+console.log(developers);
