@@ -1,1 +1,71 @@
-<h1 style="display: flex; justify-content: center; font-family: sans-serif;">NGX SIMULATOR</h1>
+<header class="header">
+  <div class="header__container">
+    
+    <div class="logo-company">
+      <img src="./images/logo/logo.svg" alt="Лого компании (Горы)">
+      <span class="logo__name bold">{{ companyName }}</span>
+    </div>
+    
+    <nav class="header__menu fs-18 semi-bold">
+      <a class = "header__item">Главная</a>
+      <a class = "header__item">Про гида</a>
+      <a class = "header__item">Программа тура</a>
+      <a class = "header__item">Стоимость</a>
+      <a class = "header__item">Блог</a>
+      <a class = "header__item">Контакты</a>
+    </nav>
+    
+    <button type="submit" class="header__btn semi-bold fs-16">Консультация</button>
+    
+  </div>
+</header>
+
+<section class="main__banner">
+  <div class="main__container">
+    <h1 class="main__title regular fs-50">Насладись прогулкой в горах <br> с командой единомышленников</h1>
+    <div class="main__form">
+      
+      <form class="form-container">
+        
+        <div class="container-travel-place form-cont select-wrapper">
+          <select class="input-cont fs-16" required>
+            <option value="" disabled selected hidden>Локация для тура</option>
+            <option value="Дубай">Дубай</option>
+            <option value="Мальдивы">Мальдивы</option>
+            <option value="Дагестан">Дагестан</option>
+          </select>
+          <label class="search-form regular fs-14">выберите из списка</label>
+        </div>
+        
+        <div class="container-travel-date form-cont calendar-wrapper">
+          <input 
+          placeholder="Дата похода" 
+          type="text" 
+          class="input-cont fs-16"
+          onfocus="(type='date')"
+          onblur="if(!value) type='text'">
+          <label class="search-form regular fs-14">укажите дату</label>
+        </div>
+        
+        <div class="container-travelers form-cont select-wrapper">
+          
+          <select class="input-cont fs-16" required>
+            <option value="" disabled selected hidden>Участники</option>
+            <option value="1 чел.">1 чел.</option>
+            <option value="2 чел.">2 чел.</option>
+            <option value="3 чел.">3 чел.</option>
+            <option value="4 чел.">4 чел.</option>
+          </select>
+          
+          <label class="search-form regular fs-14">выберите из списка</label>
+        </div>
+        
+        <div class="container-search-tour-btn form-cont">
+          <button type="submit" class="search-tour-btn">Найти программу</button>
+        </div>
+        
+      </form>
+
+    </div>
+  </div>
+</section>
