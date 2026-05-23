@@ -13,6 +13,11 @@ export class AppComponent {
   
   companyName: string = 'румтибет';
   
+  constructor() {
+    this.saveLastVisitDate();
+    this.quantityVisits();
+  }
+  
   isRgbColor(color: Colors): boolean {
     return color === Colors.RED || color === Colors.GREEN || color === Colors.BLUE;
   }
