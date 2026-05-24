@@ -1,0 +1,128 @@
+@use './fonts';
+@use './normalize';
+
+* {
+  font-family: 'Nunito Sans';
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: block;
+}
+
+:root {
+  --primary-white-color: rgba(253, 253, 253, 1);
+  --logo-white-color: rgba(255, 255, 255, 1);
+}
+
+.semi-bold {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.fs-50 {
+  font-size: 50px;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.form-cont {
+  width: 270px;
+  height: 81px;
+}
+
+.input-cont {
+  display: flex;
+  width: 270px;
+  height: 52px;
+  padding-left: 14px;
+  
+  background-color: transparent;
+  border: 1px solid rgba(253, 253, 253, 0.4);
+  border-radius: 8px;
+  color: var(--primary-white-color);
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  &::placeholder {
+    color: var(--primary-white-color);
+    opacity: 1;
+  }
+  
+  option {
+    color: #333333;
+    background-color: #fff;
+  }
+}
+
+.search-form {
+  padding: 0px 8px;
+  color: rgba(253, 253, 253, 0.7);
+  line-height: 150%;
+}
+
+.select-wrapper, .calendar-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 18px;
+  width: 16px;
+  height: 16px;
+  pointer-events: none; 
+  background-image: url('/images/icons/arrow.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.calendar-wrapper::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 18px;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  background-image: url('/images/icons/calendar.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  color: transparent;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="date"]::-moz-calendar-picker-indicator {
+  opacity: 0;
+}
