@@ -87,10 +87,10 @@
 .select-wrapper::after {
   content: "";
   position: absolute;
-  right: 16px;
-  top: 18px;
-  width: 16px;
-  height: 16px;
+  right: 18.75px;
+  top: 22.49px;
+  width: 14.51px;
+  height: 7.64px;
   pointer-events: none; 
   background-image: url('/images/icons/arrow.svg');
   background-repeat: no-repeat;
@@ -101,9 +101,9 @@
   content: "";
   position: absolute;
   right: 16px;
-  top: 18px;
-  width: 16px;
-  height: 16px;
+  top: 16px;
+  width: 18px;
+  height: 18px;
   pointer-events: none;
   background-image: url('/images/icons/calendar.svg');
   background-repeat: no-repeat;
