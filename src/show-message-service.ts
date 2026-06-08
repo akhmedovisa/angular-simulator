@@ -14,12 +14,14 @@ export class ShowMessageService {
   
   private _activeMessages: IMessage[] = [];
   
+  private nextId = 0;
+  
   public get activeMessages(): IMessage[] {
     return this._activeMessages;
   }
   
   public addMessage(objMsg: IMessage) {
-    const newId = Date.now();
+    const newId = this.nextId++;
     
     this._activeMessages.unshift({id: newId, type: objMsg.type, message: objMsg.message});
     
