@@ -12,17 +12,17 @@ export class ShowMessageService {
     { id: 4, type: TypeMessages.ERROR, message: 'Материалы недоступны' }
   ];
   
-  private activeMessages: IMessage[] =[]
+  public activeMessages: IMessage[] = [];
   
   public addMessage(objMsg: IMessage) {
     const newId = Date.now();
     
-    this.activeMessages.unshift({id: newId, type: objMsg.type, message: objMsg.message})
+    this.activeMessages.unshift({id: newId, type: objMsg.type, message: objMsg.message});
     
-    setTimeout(() => this.deleteMessage(newId), 5000)
+    setTimeout(() => this.deleteMessage(newId), 5000);
   }
   
   public deleteMessage(id: number) {
-    this.activeMessages = this.activeMessages.filter(msg => msg.id !== id)
+    this.activeMessages = this.activeMessages.filter(msg => msg.id !== id);
   }
 }

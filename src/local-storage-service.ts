@@ -17,7 +17,7 @@ export class LocalStorageService {
     const rawData = localStorage.getItem(key);
     
     if (!rawData) {
-      return null
+      return null;
     }
     
     return JSON.parse(rawData) as T;

@@ -144,7 +144,7 @@ export class AppComponent {
     }
   ]
   
-  constructor() {   
+  constructor() {
     this.saveLastVisitDate();
     this.quantityVisits();
     
