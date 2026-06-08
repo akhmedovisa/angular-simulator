@@ -195,12 +195,6 @@
         .search-tour-btn {
           display: block;
           width: 213px;
-          height: 52px;
-          border-radius: 4px;
-          border: 0px;
-          background-color: var(--green-btn-color);
-          color: var(--primary-white-color);
-          cursor: pointer;
           transition: all 0.3s ease;
           
           &:hover:not(:disabled) {
@@ -331,18 +325,6 @@
       }
       .mountain-tours-info__btn{
         width: 200px;
-        height: 52px;
-        background-color: var(--green-btn-color);
-        color: var(--primary-white-color);
-        border: none;
-        border-radius: 4px;
-        line-height: 20px;
-        letter-spacing: 0.012em;
-        cursor: pointer;
-        
-        &:hover {
-          background-color: #235452;
-        };
       }
     }
   }
@@ -361,20 +343,9 @@
     display: flex;
     gap: 90px;
     
-    
     .offers__content {
       max-width: 580px;
       height: 591px;
-      
-      .offers__subtitle {
-        color: var(--yellow-color);
-        line-height: 20px;
-      }
-      
-      .offers__title {
-        line-height: 120%;
-        padding: 8px 0px 40px 0px;
-      }
       
       .offers__description {
         line-height: 150%;
@@ -436,19 +407,7 @@
         }
       }
       .offers__btn {
-        background-color: var(--green-btn-color);
         width: 236px;
-        height: 52px;
-        color: var(--primary-white-color);
-        line-height: 20px;
-        letter-spacing: 0.012em;
-        border-radius: 4px;
-        cursor: pointer;
-        border: none;
-        
-        &:hover {
-          background-color: #235452;
-        }
       }
     }
     
@@ -496,3 +455,209 @@
   }
 }
 
+.tours {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 893px;
+  flex-direction: column;
+  
+  .tours__header {
+    display: flex;
+    width: 980px;
+    height: 66px;
+    margin-bottom: 50px;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .tours__wrapper {
+    display: flex;
+    width: 1180px;
+    height: 500px;
+    gap: 20px;
+    
+    .tours__wrapper-card {
+      width: 380px;
+      height: 500px;
+      position: relative;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+      
+      &:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        z-index: 5;
+      }
+      
+      .card__rating-badge {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 65px;
+        height: 32px;
+        top: 50px;
+        left: 315px;
+        opacity: 1;
+        background-color: rgba(253, 253, 253, 0.4);
+        border-radius: 4px;
+        padding: 4px 8px;
+        backdrop-filter: blur(2px);
+        
+        .card__rating-icon {
+          padding: 3.57px 3.44px 4.07px 3.44px;
+        }
+        
+        .card__rating-value {
+          line-height: 18px;
+          color: rgba(26, 62, 62, 1)
+        }
+      }
+      
+      .card__content {
+        position: absolute;
+        width: 380px;
+        height: 90px;
+        top: 410px;
+        border-bottom-right-radius: 32px;
+        border-bottom-left-radius: 32px;
+        backdrop-filter: blur(3px);
+        background-color: rgba(255, 255, 255, 0.2);
+        display: flex;
+        justify-content: space-between;
+        * {
+          color: var(--primary-white-color);
+        }
+        
+        .card__info {
+          padding: 20px 0px 23px 32px;
+          .card__title{
+            font-size: 24px;
+            line-height: 120%;
+          }
+          .card__subtitle {
+            line-height: 18px;
+          }
+        }
+        .card__price-wrapper {
+          width: 86px;
+          height: 40px;
+          background-color: rgba(255, 255, 255, 0.3);
+          border-radius: 4px;
+          padding: 8px 16px;
+          margin: 25px 32px 25px 0px;
+          
+          .price-currency {
+            font-size: 20px;
+            line-height: 24px;
+          }
+        }
+      }
+      
+    }
+  }
+  
+  .tours__btn-container {
+    margin-top: 50px;
+    
+    .tours__btn {
+      width: 244px;
+    }
+  }
+}
+
+.blog {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 1036px;
+  background-color: rgba(243, 245, 244, 1);
+  
+  .blog__header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 580px;
+    height: 66px;
+    margin-bottom: 40px;
+  }
+  
+  .blog__wrapper {
+    display: flex;
+    max-width: 1180px;
+    height: 648px;
+    flex-wrap: wrap;
+    row-gap: 24px;
+    column-gap: 20px;
+    
+
+    
+    .blog-card {
+      background-color: var(--primary-white-color);
+      display: flex;
+      gap: 24px;
+      width: 580px;
+      height: 312px;
+      align-items: center;
+      
+      .blog-card-img {
+        img {
+          transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+        
+          &:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            z-index: 5;
+          }
+        }
+      }
+
+      .blog-card__content {
+        width: 294px;
+        height: 280px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 16px 0;
+        gap: 24px;
+        
+        .blog-card__title {
+          font-size: 24px;
+          line-height: 32px;
+        }
+        
+        .blog-card__subtitle {
+          line-height: 20px;
+        }
+      }
+      
+      .blog-card__footer {
+        width: 294px;
+        height: 20px;
+        display: flex;
+        justify-content: space-between;
+        line-height: 20px;
+        
+        .blog-card__date {
+          color: var(--yellow-color);
+        }
+        
+        .blog-card__link {
+          color: var(--green-btn-color);
+          
+        }
+      }
+    }
+  }
+  
+  .blog__footer {
+    margin-top: 50px;
+    
+    .blog__btn {
+      width: 220px;
+    }
+  }
+}
