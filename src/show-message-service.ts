@@ -12,7 +12,7 @@ export class ShowMessageService {
     { id: 4, type: TypeMessages.ERROR, message: 'Материалы недоступны' }
   ];
   
-  public activeMessages: IMessage[] =[]
+  private activeMessages: IMessage[] =[]
   
   public addMessage(objMsg: IMessage) {
     const newId = Date.now();
