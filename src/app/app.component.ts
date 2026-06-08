@@ -10,6 +10,7 @@ import { IPopularTours } from '../interfaces/IPopularTours';
 import { IBlogTours } from '../interfaces/IBlogTours';
 import { ShowMessageService } from '../show-message-service';
 import { LocalStorageService } from '../local-storage-service';
+import { IMessage } from '../interfaces/IMessage';
 
 @Component({
   selector: 'app-root',
@@ -20,9 +21,27 @@ import { LocalStorageService } from '../local-storage-service';
 })
 export class AppComponent {
   
-  showMessageService: ShowMessageService = inject(ShowMessageService);
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
+  private showMessageService: ShowMessageService = inject(ShowMessageService);
   
-  localStorageService: LocalStorageService = inject(LocalStorageService);
+  public get messages() {
+    return this.showMessageService.activeMessages;
+  }
+  
+  public deleteMsg(id: number): void {
+    this.showMessageService.deleteMessage(id);
+  }
+  
+  public addMsg(objMsg: IMessage) {
+    this.showMessageService.addMessage(objMsg);
+  }
+  
+  public addDefaultMsgByIndex(index: number): void {
+    const msg = this.showMessageService.defaultMessages[index];
+    if (msg) {
+      this.showMessageService.addMessage(msg);
+    }
+  }
   
   isLoading: boolean = true;
   

@@ -138,7 +138,7 @@
         <h2 class="offers__title">Исследуйте все горные массивы мира вместе с нами</h2>
         <p class="mountain-tours-info__description regular fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
         <button class="mountain-tours-info__btn green-btn" 
-        (click)="showMessageService.addMessage(showMessageService.defaultMessages[2])">
+        (click)="addDefaultMsgByIndex(2)">
         Программа тура
       </button>
       </div>
@@ -170,7 +170,7 @@
           }
         </div>
         
-        <button class="offers__btn green-btn" (click)="showMessageService.addMessage(showMessageService.defaultMessages[1])">
+        <button class="offers__btn green-btn" (click)="addDefaultMsgByIndex(1)">
           Стоимость программ
         </button>
       </div>
@@ -216,7 +216,7 @@
       }
     </div>
     <div class="tours__btn-container">
-      <button class="tours__btn green-btn" (click)="showMessageService.addMessage(showMessageService.defaultMessages[0])">
+      <button class="tours__btn green-btn" (click)="addDefaultMsgByIndex(0)">
         Рейтинг направлений
       </button>
     </div>
@@ -252,7 +252,7 @@
     </div>
     
     <div class="blog__footer">
-      <button class="blog__btn green-btn" (click)="showMessageService.addMessage(showMessageService.defaultMessages[3])">
+      <button class="blog__btn green-btn" (click)="addDefaultMsgByIndex(3)">
         Другие материалы
       </button>
     </div>
@@ -260,7 +260,7 @@
 }
 
 <div class="toast-container">
-  @for (msg of showMessageService.activeMessages; track msg.id) {
+  @for (msg of messages; track msg.id) {
     <ng-container
     [ngTemplateOutlet]="showMessage"
     [ngTemplateOutletContext]="{$implicit: msg}">
@@ -278,7 +278,7 @@
       <p class="toast__text">{{ msg.message }}</p>
     </div>
     <span class="toast__close-btn">
-      <img src="/images/icons/close.svg" alt="Закрыть" (click)="showMessageService.deleteMessage(msg.id)">
+      <img src="/images/icons/close.svg" alt="Закрыть" (click)="deleteMsg(msg.id)">
     </span>
   </div>
 </ng-template>
