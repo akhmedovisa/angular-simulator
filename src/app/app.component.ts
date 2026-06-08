@@ -167,7 +167,7 @@ export class AppComponent {
   }
   
   private saveLastVisitDate() {
-    const lastVisit = localStorage.getItem('lastPageVisit');
+    const lastVisit = this.localStorageService.getValue('lastPageVisit');
     
     if (lastVisit) {
       console.log(`С возвращением, вам последний визит был ${lastVisit}`)
@@ -176,11 +176,11 @@ export class AppComponent {
     }
     
     const now = new Date().toLocaleString();
-    localStorage.setItem('lastPageVisit', now);
+    this.localStorageService.setValue('lastPageVisit', now);
   }
   
   private quantityVisits() {
-    const currentVisits = Number(localStorage.getItem('numberVisits')) || 1;
+    const currentVisits = Number(this.localStorageService.getValue('numberVisits')) || 1;
     
     if(currentVisits > 1) {
       console.log(`Приветствую вас снова, это ваш ${currentVisits} визит`);
@@ -188,7 +188,7 @@ export class AppComponent {
       console.log('Добро пожаловать, это ваш первый визит');
     }
     
-    localStorage.setItem('numberVisits', (currentVisits+1).toString())
+    this.localStorageService.setValue('numberVisits', (currentVisits+1).toString())
   }
   
   increment(): void {
