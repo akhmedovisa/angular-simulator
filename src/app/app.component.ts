@@ -158,7 +158,7 @@ export class AppComponent {
     }, 200);
   }
   
-  isFormValid():boolean {
+  isFormValid(): boolean {
     return !this.selectedLocation || !this.selectedDate || !this.selectedTravelers;
   }
   
@@ -166,8 +166,8 @@ export class AppComponent {
     return color === Colors.RED || color === Colors.GREEN || color === Colors.BLUE;
   }
   
-  private saveLastVisitDate() {
-    const lastVisit = this.localStorageService.getValue('lastPageVisit');
+  private saveLastVisitDate(): void {
+    const lastVisit = this.localStorageService.getValue<string>('lastPageVisit');
     
     if (lastVisit) {
       console.log(`С возвращением, вам последний визит был ${lastVisit}`)
@@ -180,7 +180,9 @@ export class AppComponent {
   }
   
   private quantityVisits() {
-    const currentVisits = Number(this.localStorageService.getValue('numberVisits')) || 1;
+    const rawVisits = this.localStorageService.getValue<string>('numberVisits');
+    
+    const currentVisits = Number(rawVisits) || 1;
     
     if(currentVisits > 1) {
       console.log(`Приветствую вас снова, это ваш ${currentVisits} визит`);
