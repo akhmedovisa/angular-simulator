@@ -1,18 +1,47 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { DecimalPipe, NgTemplateOutlet } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import './training';
 import { Colors } from '../enums/Color';
 import './collection';
 import { IAdvantages } from '../interfaces/IAdvantages';
 import { IGallery } from '../interfaces/IGallery';
+import { IPopularTours } from '../interfaces/IPopularTours';
+import { IBlogTours } from '../interfaces/IBlogTours';
+import { ShowMessageService } from '../show-message-service';
+import { LocalStorageService } from '../local-storage-service';
+import { IMessage } from '../interfaces/IMessage';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule],
+  imports: [FormsModule, DecimalPipe, NgTemplateOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  providers: [ShowMessageService]
 })
 export class AppComponent {
+  
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
+  private showMessageService: ShowMessageService = inject(ShowMessageService);
+  
+  public get messages() {
+    return this.showMessageService.activeMessages;
+  }
+  
+  public deleteMsg(id: number): void {
+    this.showMessageService.deleteMessage(id);
+  }
+  
+  public addMsg(objMsg: IMessage) {
+    this.showMessageService.addMessage(objMsg);
+  }
+  
+  public addDefaultMsgByIndex(index: number): void {
+    const msg = this.showMessageService.defaultMessages[index];
+    if (msg) {
+      this.showMessageService.addMessage(msg);
+    }
+  }
   
   isLoading: boolean = true;
   
@@ -69,6 +98,71 @@ export class AppComponent {
     }
   ]
   
+  popularTours: IPopularTours[] = [
+    {
+      id: 1,
+      rating: 4.9,
+      srcImg: '/images/backgrounds/tour-by-lake.png',
+      title: 'Озеро возле гор',
+      subtitle: 'романтическое приключение',
+      price: 480,
+      currency: '$'
+    },
+    {
+      id: 2,
+      rating: 4.5,
+      srcImg: '/images/backgrounds/night-tour-on-mountain.png',
+      title: 'Ночь в горах',
+      subtitle: 'в компании друзей',
+      price: 500,
+      currency: '$'
+    },
+    {
+      id: 3,
+      rating: 5.0,
+      srcImg: '/images/backgrounds/tour-stretching-on-mountain.png',
+      title: 'Растяжка в горах',
+      subtitle: 'для тех, кто забоится о себе',
+      price: 230,
+      currency: '$'
+    }
+  ]
+  
+  blogTours: IBlogTours[] =[
+    {
+      id: 1,
+      srcImg: '/images/italy-coast.png',
+      title: 'Красивая Италия, какая она в реальности?',
+      subtitle: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      date: '01/04/2023',
+      srcAlt: 'italy-coast'
+    },
+    {
+      id: 2,
+      srcImg: '/images/airplane-wing-clouds.png',
+      title: 'Долой сомнения! Весь мир открыт для вас!',
+      subtitle: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...',
+      date: '01/04/2023',
+      srcAlt: 'airplane-wing-clouds'
+    },
+    {
+      id: 3,
+      srcImg: '/images/solo-traveler-backpacker.png',
+      title: 'Как подготовиться к путешествию в одиночку?',
+      subtitle: 'Для современного мира базовый вектор развития предполагает.',
+      date: '01/04/2023',
+      srcAlt: 'solo-traveler-backpacker'
+    },
+    {
+      id: 4,
+      srcImg: '/images/india-taj-mahal.png',
+      title: 'Индия ... летим?',
+      subtitle: 'Для современного мира базовый.',
+      date: '01/04/2023',
+      srcAlt: 'india-taj-mahal'
+    }
+  ]
+  
   constructor() {
     this.saveLastVisitDate();
     this.quantityVisits();
@@ -80,10 +174,10 @@ export class AppComponent {
     
     setTimeout(() => {
       this.isLoading = false;
-    }, 2000);
+    }, 200);
   }
   
-  isFormValid():boolean {
+  isFormValid(): boolean {
     return !this.selectedLocation || !this.selectedDate || !this.selectedTravelers;
   }
   
@@ -91,8 +185,8 @@ export class AppComponent {
     return color === Colors.RED || color === Colors.GREEN || color === Colors.BLUE;
   }
   
-  private saveLastVisitDate() {
-    const lastVisit = localStorage.getItem('lastPageVisit');
+  private saveLastVisitDate(): void {
+    const lastVisit = this.localStorageService.getValue<string>('lastPageVisit');
     
     if (lastVisit) {
       console.log(`С возвращением, вам последний визит был ${lastVisit}`)
@@ -101,11 +195,13 @@ export class AppComponent {
     }
     
     const now = new Date().toLocaleString();
-    localStorage.setItem('lastPageVisit', now);
+    this.localStorageService.setValue('lastPageVisit', now);
   }
   
   private quantityVisits() {
-    const currentVisits = Number(localStorage.getItem('numberVisits')) || 1;
+    const rawVisits = this.localStorageService.getValue<string>('numberVisits');
+    
+    const currentVisits = Number(rawVisits) || 1;
     
     if(currentVisits > 1) {
       console.log(`Приветствую вас снова, это ваш ${currentVisits} визит`);
@@ -113,7 +209,7 @@ export class AppComponent {
       console.log('Добро пожаловать, это ваш первый визит');
     }
     
-    localStorage.setItem('numberVisits', (currentVisits+1).toString())
+    this.localStorageService.setValue('numberVisits', (currentVisits+1).toString())
   }
   
   increment(): void {

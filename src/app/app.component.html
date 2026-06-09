@@ -101,7 +101,7 @@
           </div>
           
           <div class="container-search-tour-btn form-cont">
-            <button type="submit" class="search-tour-btn" [disabled]="isFormValid()">Найти программу</button>
+            <button type="submit" class="search-tour-btn green-btn" [disabled]="isFormValid()">Найти программу</button>
           </div>
           
         </form>
@@ -134,10 +134,13 @@
       </div>
       
       <div class="mountain-tours-info__text-cont">
-        <p class="mountain-tours-info__subtitle regular fs-24">о нашем походе</p>
-        <h2 class="mountain-tours-info__title extra-bold fs-32">Исследуйте все горные массивы мира вместе с нами</h2>
+        <p class="offers__subtitle">о нашем походе</p>
+        <h2 class="offers__title">Исследуйте все горные массивы мира вместе с нами</h2>
         <p class="mountain-tours-info__description regular fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
-        <button class="mountain-tours-info__btn fs-16 semi-bold">Программа тура</button>
+        <button class="mountain-tours-info__btn green-btn" 
+        (click)="addDefaultMsgByIndex(2)">
+        Программа тура
+      </button>
       </div>
       
     </div>
@@ -147,8 +150,8 @@
     <div class="offers__container">
       
       <div class="offers__content">
-        <p class="offers__subtitle fs-24 regular">наше предложение</p>
-        <h2 class="offers__title extra-bold fs-32">Лучшие программы для тебя</h2>
+        <p class="offers__subtitle">наше предложение</p>
+        <h2 class="offers__title">Лучшие программы для тебя</h2>
         <p class="offers__description regular fs-18">
           Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.
         </p>
@@ -167,7 +170,9 @@
           }
         </div>
         
-        <button class="offers__btn semi-bold fs-16">Стоимость программ</button>
+        <button class="offers__btn green-btn" (click)="addDefaultMsgByIndex(1)">
+          Стоимость программ
+        </button>
       </div>
       
       <div class="offers__gallery">
@@ -178,4 +183,102 @@
       
     </div>
   </section>
+  
+  <section class="tours">
+    <div class="tours__header">
+      <p class="offers__subtitle">по версии отдыхающих</p>
+      <h2 class="offers__title">Популярные направления</h2>
+    </div>
+    
+    <div class="tours__wrapper">
+      @for (tour of popularTours; track tour.id) {
+        
+        <article class="tours__wrapper-card">
+          <img [src]="tour.srcImg" [alt]="tour.title" [class]="'tour-img' + tour.id">
+          <div class="card__rating-badge">
+            <img class="card__rating-icon" src="/images/icons/star.svg" alt="star">
+            <span class="card__rating-value fs-14 bold">{{ tour.rating | number:'1.1-1' }}</span>
+          </div>
+          <div  class="card__content">
+            
+            <div class="card__info">
+              <h3 class="card__title bold">{{ tour.title }}</h3>
+              <p class="card__subtitle fs-14 regular">{{ tour.subtitle }}</p>
+            </div>
+            
+            <div class="card__price-wrapper">
+              <span class="price-currency bold">{{ tour.price }} {{ tour.currency }}</span>
+            </div>
+            
+          </div>
+
+        </article>
+      }
+    </div>
+    <div class="tours__btn-container">
+      <button class="tours__btn green-btn" (click)="addDefaultMsgByIndex(0)">
+        Рейтинг направлений
+      </button>
+    </div>
+  </section>
+  
+  <section class="blog">
+    <div class="blog__header">
+      <p class="offers__subtitle">делимся впечатлениями</p>
+      <h2 class="offers__title">Блог о путешествиях</h2>
+    </div>
+    
+    <div class="blog__wrapper">
+      @for (blogTour of blogTours; track blogTour.id) {
+        <article class="blog-card">
+          
+          <div class="blog-card-img">
+            <img [class]="'blog-card-img' + blogTour.id" [src]="blogTour.srcImg" [alt]="blogTour.srcAlt">
+          </div>
+          
+          <div class="blog-card__content">
+            <h3 class="blog-card__title bold">{{ blogTour.title }}</h3>
+            <p class="blog-card__subtitle regular fs-14">{{ blogTour.subtitle }}</p>
+            
+            <div class="blog-card__footer fs-14 bold">
+              <span class="blog-card__date">{{ blogTour.date }}</span>
+              <span class="blog-card__link">читать статью</span>
+            </div>
+            
+          </div>
+          
+        </article>
+      }
+    </div>
+    
+    <div class="blog__footer">
+      <button class="blog__btn green-btn" (click)="addDefaultMsgByIndex(3)">
+        Другие материалы
+      </button>
+    </div>
+  </section>
 }
+
+<div class="toast-container">
+  @for (msg of messages; track msg.id) {
+    <ng-container
+    [ngTemplateOutlet]="showMessage"
+    [ngTemplateOutletContext]="{$implicit: msg}">
+    </ng-container>
+  }
+</div>
+
+<ng-template #showMessage let-msg>
+  <div class="toast">
+    <div class="toast__icon-wrapper">
+      <img src="/images/icons/letter.svg" alt="Иконка письма">
+    </div>
+    <div class="toast__content">
+      <h3 class="toast__title">{{ msg.type }}</h3>
+      <p class="toast__text">{{ msg.message }}</p>
+    </div>
+    <span class="toast__close-btn">
+      <img src="/images/icons/close.svg" alt="Закрыть" (click)="deleteMsg(msg.id)">
+    </span>
+  </div>
+</ng-template>
